@@ -1,0 +1,28 @@
+﻿<Window x:Class="EmployeeDirectory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeDirectory"
+        mc:Ignorable="d"
+        Title="Employee Directory" Width="1280" Height="720" FontFamily="Calibri" FontSize="15.7" Loaded="Window_Loaded"
+        Keyboard.KeyDown="OnKeyDownHandler">
+    <Window.Resources>
+        <CollectionViewSource x:Key="employeeViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Employee}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid Name="MainGrid" DataContext="{StaticResource employeeViewSource}">
+        <DataGrid x:Name="employeeDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="First Name" IsReadOnly="True" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Last Name" IsReadOnly="True" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="directPhoneColumn" Binding="{Binding DirectPhone}" Header="Direct Phone" IsReadOnly="True" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="cityColumn" Binding="{Binding City}" Header="City" IsReadOnly="True" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="stateColumn" Binding="{Binding State}" Header="State/Providence" IsReadOnly="True" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="jobTitleColumn" Binding="{Binding JobTitle}" Header="Job Title" IsReadOnly="True" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="departmentColumn" Binding="{Binding Department}" Header="Department" IsReadOnly="True" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="mobilePhoneColumn" Binding="{Binding MobilePhone}" Header="Mobile Phone" IsReadOnly="True" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding Email}" Header="Email" IsReadOnly="True" Width="SizeToCells"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
